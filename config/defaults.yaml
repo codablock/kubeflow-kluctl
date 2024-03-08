@@ -1,0 +1,3 @@
+common:
+  cert_manager:
+    enabled: true

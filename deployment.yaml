@@ -1,0 +1,8 @@
+vars:
+  - file: config/defaults.yaml
+
+deployments:
+  - path: namespaces
+  - barrier: true
+  - include: common
+  - barrier: true

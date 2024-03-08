@@ -1,0 +1,5 @@
+deployments:
+  - path: cert-manager
+    when: common.cert_manager.enabled
+  - barrier: true # ensure CRDs are deployed and cert-manager API/webhook is ready
+  - path: kubeflow-issuer
