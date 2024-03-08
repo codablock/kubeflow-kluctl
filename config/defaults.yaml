@@ -29,3 +29,11 @@ common:
     oidc:
       clientID: kubeflow-oidc-authservice
       clientSecret: pUBnBOY80SnXgjibTYM9ZWNzY2xreNGQok
+
+  knative:
+    serving:
+      useIstioGateway: true
+    eventing:
+      enabled: true
+      inMemoryChannelsEnabled: false
+      mtChannelBrokerEnabled: false

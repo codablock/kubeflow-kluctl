@@ -2,3 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
 - eventing-post-install.yaml
+
+commonAnnotations:
+  kluctl.io/hook: post-deploy

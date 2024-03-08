@@ -15,3 +15,9 @@ patches:
 - path: patches/knative-serving-namespaced-edit.yaml
 - path: patches/knative-serving-namespaced-view.yaml
 - path: patches/service-labels.yaml
+{% if common.knative.serving.useIstioGateway %}
+# We want to Knative to use Istio's local Gateway and not the Ingress Gateway
+# See: https://github.com/kubeflow/manifests/issues/1966
+- path: patches/gateway-selector-in-knative-serving.yaml
+- path: patches/gateway-selector-in-istio-system.yaml
+{% endif %}

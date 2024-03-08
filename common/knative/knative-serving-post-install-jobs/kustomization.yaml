@@ -12,3 +12,6 @@ resources:
 #   target:
 #     kind: Job
 #     labelSelector: app=storage-version-migration-serving
+
+commonAnnotations:
+  kluctl.io/hook: post-deploy

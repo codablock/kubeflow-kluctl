@@ -1,0 +1,9 @@
+deployments:
+  - path: knative-serving
+  - path: knative-eventing
+    when: common.knative.eventing.enabled
+# TODO post-install jobs seem to be broken due to missing ServiceAccounts. Are they still needed? Original kustomize manifests never referenced these
+#  - barrier: true
+#  - path: knative-serving-post-install-jobs
+#  - path: knative-eventing-post-install-jobs
+#    when: common.knative.eventing.enabled
