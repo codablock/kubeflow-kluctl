@@ -1,0 +1,9 @@
+namespace: istio-system
+
+resources:
+  - helm-rendered.yaml
+  - gateway-authorizationpolicy.yaml
+  - gateway.yaml
+
+patches:
+  - path: patches/service.yaml

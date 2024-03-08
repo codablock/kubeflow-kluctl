@@ -1,3 +1,4 @@
 deployments:
   - include: cert-manager
   - barrier: true
+  - include: istio

@@ -1,0 +1,6 @@
+helmChart:
+  repo: https://istio-release.storage.googleapis.com/charts
+  chartName: cni
+  chartVersion: 1.17.5
+  releaseName: istio-cni
+  namespace: "kube-system"

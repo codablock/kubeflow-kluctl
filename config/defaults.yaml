@@ -1,3 +1,9 @@
 common:
   cert_manager:
     enabled: true
+
+  istio:
+    cni:
+      enabled: false
+    clusterLocalGateway:
+      enabled: false

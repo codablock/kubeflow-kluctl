@@ -1,0 +1,6 @@
+helmChart:
+  repo: https://istio-release.storage.googleapis.com/charts
+  chartName: gateway
+  chartVersion: 1.17.5
+  releaseName: cluster-local-gateway
+  namespace: "istio-system"

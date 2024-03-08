@@ -1,0 +1,9 @@
+deployments:
+  - path: istio-base
+  - barrier: true
+  - path: istio-cni
+    when: common.istio.cni.enabled
+  - path: istio-istiod
+  - path: istio-gateway
+  - path: istio-cluster-local-gateway
+    when: common.istio.clusterLocalGateway.enabled
