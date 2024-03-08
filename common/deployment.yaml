@@ -3,3 +3,4 @@ deployments:
   - barrier: true
   - include: istio
   - include: oidc-client
+  - path: dex
