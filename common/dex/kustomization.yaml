@@ -4,7 +4,6 @@ namespace: auth
 
 resources:
   - helm-rendered.yaml
-  - dex-passwords.yaml
   - virtual-service.yaml
 
 generatorOptions:
