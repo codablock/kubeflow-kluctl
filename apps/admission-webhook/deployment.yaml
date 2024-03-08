@@ -1,0 +1,4 @@
+deployments:
+  - path: upstream
+    onlyRender: true
+  - path: upstream/overlays/cert-manager

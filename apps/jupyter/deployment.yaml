@@ -1,0 +1,3 @@
+deployments:
+  - include: jupyter-web-app
+  - include: notebook-controller

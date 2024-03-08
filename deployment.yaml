@@ -6,3 +6,5 @@ deployments:
   - barrier: true
   - include: common
   - barrier: true
+  - include: apps
+  - barrier: true

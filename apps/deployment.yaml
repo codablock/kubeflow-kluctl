@@ -1,0 +1,11 @@
+deployments:
+  - include: pipeline
+  - include: katib
+  - include: centraldashboard
+  - include: admission-webhook
+  - include: jupyter
+  - include: profiles
+  - include: pvcviewer-controller
+  - include: volumes-web-app
+  - include: tensorboard
+  - include: training-operator

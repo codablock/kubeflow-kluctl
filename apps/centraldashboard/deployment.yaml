@@ -1,0 +1,7 @@
+deployments:
+  - path: upstream
+    onlyRender: true
+  - path: upstream/overlays/kserve
+    when: common.oidc_client.auth_service.enabled and not common.oidc_client.oauth2_proxy.enabled
+  - path: upstream/overlays/oauth2-proxy
+    when: common.oidc_client.oauth2_proxy.enabled
