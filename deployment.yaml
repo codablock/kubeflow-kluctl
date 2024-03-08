@@ -7,4 +7,5 @@ deployments:
   - include: common
   - barrier: true
   - include: apps
+  - include: contrib
   - barrier: true
