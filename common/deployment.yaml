@@ -6,3 +6,5 @@ deployments:
   - path: dex
   - include: knative
   - barrier: true
+  - path: kubeflow-roles
+  - path: kubeflow-istio-resources
