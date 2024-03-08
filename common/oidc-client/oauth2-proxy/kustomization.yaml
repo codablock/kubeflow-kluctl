@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- helm-rendered.yaml
+{% if common.oidc_client.oauth2_proxy.m2m.enabled %}
+- m2m
+{% if common.oidc_client.oauth2_proxy.m2m.selfSigned %}
+- m2m-self-signed
+- m2m-configure-self-signed-oidc-issuer
+{% endif %}
+{% endif %}
+# To use oauth2-proxy in OpenShift, use openshift distribution of oauth2-proxy
+# available here: https://github.com/openshift/oauth-proxy
+# and add RBAC to enable creation of tokenreviews
+# Token Reviews for OpenShift
+# - rbac.tokenreviews.yaml

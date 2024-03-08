@@ -1,0 +1,6 @@
+helmChart:
+  repo: https://oauth2-proxy.github.io/manifests
+  chartName: oauth2-proxy
+  chartVersion: 7.1.0
+  releaseName: oauth2-proxy
+  namespace: "oauth2-proxy"

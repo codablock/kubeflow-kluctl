@@ -7,3 +7,15 @@ common:
       enabled: false
     clusterLocalGateway:
       enabled: false
+
+  oidc_client:
+    auth_service:
+      enabled: true
+    oauth2_proxy:
+      enabled: false
+      cloudFlare: false
+      m2m:
+        enabled: true
+        selfSigned: true
+        # replace this with a real one in case selfSigned=false, e.g. https://oidc.eks.region.amazonaws.com/id/1234abcd
+        tokenIssuer: https://kubernetes.default.svc.cluster.local

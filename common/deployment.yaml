@@ -2,3 +2,4 @@ deployments:
   - include: cert-manager
   - barrier: true
   - include: istio
+  - include: oidc-client

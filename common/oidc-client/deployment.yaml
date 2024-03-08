@@ -1,0 +1,11 @@
+deployments:
+  # This must be always rendered even if excluded via tags.
+  # This is required due to apps/centraldashboard/upstream/overlays/oauth2-proxy using this component
+  # We can remove this when kubeflow fully switches to Kluctl
+  - path: oauth2-proxy/components/central-dashboard
+    alwaysDeploy: true
+    onlyRender: true
+  - path: oidc-authservice
+    when: common.oidc_client.auth_service.enabled
+  - path: oauth2-proxy
+    when: common.oidc_client.oauth2_proxy.enabled

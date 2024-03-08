@@ -24,23 +24,6 @@ secretGenerator:
 generatorOptions:
   disableNameSuffixHash: true
 
-vars:
-  - name: AUTHSERVICE_NAMESPACE
-    objref:
-      kind: Service
-      name: authservice
-      apiVersion: v1
-    fieldref:
-      fieldpath: metadata.namespace
-  - name: AUTHSERVICE_SERVICE
-    objref:
-      kind: Service
-      name: authservice
-      apiVersion: v1
-    fieldref:
-      fieldpath: metadata.name
-configurations:
-  - params.yaml
 images:
   - name: gcr.io/arrikto/kubeflow/oidc-authservice
     newName: docker.io/kubeflowmanifestswg/oidc-authservice

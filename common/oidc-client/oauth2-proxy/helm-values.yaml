@@ -1,0 +1,46 @@
+replicaCount: 2
+strategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxSurge: 25%
+    maxUnavailable: 25%
+
+extraEnv:
+  # This will configure oauth2-proxy option --cookie-secure which can force
+  # auth redirect with redirect_uri parameter using https.
+  - name: OAUTH2_PROXY_COOKIE_SECURE
+    value: "{{ (not common.oidc_client.oauth2_proxy.m2m.enabled or not common.oidc_client.oauth2_proxy.m2m.selfSigned) | lower }}"
+
+  # If Kubernetes is managed by kind, vCluster, minikube or similar tool,
+  # most probably the Kubernetes OIDC Issuer will be server in-cluster
+  # behind self-signed certs. This option will configure
+  # --ssl-insecure-skip-verify which will accept self-signed-certificates.
+  - name: OAUTH2_PROXY_SSL_INSECURE_SKIP_VERIFY
+    value: "{{ (common.oidc_client.oauth2_proxy.m2m.enabled and common.oidc_client.oauth2_proxy.m2m.selfSigned) | lower }}"
+
+  # This will configure oauth2-proxy option --skip-jwt-bearer-tokens which
+  # will pass the requests with 'Authorization' header with Bearer Token
+  # matching --extra-jwt-issuers.
+  - name: OAUTH2_PROXY_SKIP_JWT_BEARER_TOKENS
+    value: "{{ (common.oidc_client.oauth2_proxy.m2m.enabled) | lower }}"
+
+  # Bearer tokens issued by these OIDC Issuers will be verified against the
+  # Issuer and accepted on success.
+  # The format is exactly like in --extra-jwt-issuers.
+  # If extra jwt issuers are meant to be used with m2m bearer tokens,
+  # each issuer has to be added with RequestAuthentication so Istio can
+  # verify, trust and use the JWT. See
+  # 'common/oidc-client/oauth2-proxy/components/istio-m2m' for details.
+  # Examples:
+  # - OAUTH2_PROXY_EXTRA_JWT_ISSUERS=https://kubernetes.default.svc.cluster.local=https://kubernetes.default.svc.cluster.local
+  # - OAUTH2_PROXY_EXTRA_JWT_ISSUERS=https://oidc.eks.region.amazonaws.com/id/1234abcd=https://kubernetes.default.svc
+  - name: OAUTH2_PROXY_EXTRA_JWT_ISSUERS
+    value: ""
+
+config:
+  clientID: kubeflow-oidc-authservice
+  clientSecret: pUBnBOY80SnXgjibTYM9ZWNzY2xreNGQok
+  cookieSecret: 7d16fee92f8d11b8940b081b3f8b8acb
+
+  configFile: |
+    {{ load_template("./oauth2_proxy.cfg") | indent(4) }}

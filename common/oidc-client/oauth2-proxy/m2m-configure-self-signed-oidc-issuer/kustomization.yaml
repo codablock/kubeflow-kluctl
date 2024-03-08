@@ -1,0 +1,19 @@
+commonAnnotations:
+  kluctl.io/hook: post-deploy
+
+resources:
+- job.configure-oidc-issuer-jwks-in-requestauthentication.yaml
+- rbac.yaml
+
+configMapGenerator:
+- name: configure-self-signed-oidc-issuer-script
+  namespace: istio-system
+  files:
+  - script.sh=script.sh
+
+- name: configure-self-signed-oidc-issuer-envs
+  namespace: istio-system
+  literals:
+  - ISTIO_ROOT_NAMESPACE=istio-system
+  - REQUEST_AUTHENTICATION_NAME=m2m-token-issuer
+  - KUBERNETES_API_SERVER_URL=https://kubernetes.default.svc

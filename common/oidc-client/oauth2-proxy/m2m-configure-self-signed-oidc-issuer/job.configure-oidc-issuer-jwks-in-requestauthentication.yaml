@@ -1,24 +1,28 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: configure-kubernetes-oidc-issuer-jwks-in-requestauthentication
+  name: configure-oidc-issuer-jwks-in-requestauthentication
   namespace: istio-system
+  annotations:
+    kluctl.io/hook-weight: 100
+    kluctl.io/hook-wait: "false"
 spec:
-  ttlSecondsAfterFinished: 0
   template:
     metadata:
       labels: {}
+      annotations:
+        sidecar.istio.io/inject: "false"
     spec:
       restartPolicy: OnFailure
-      serviceAccountName: self-signed-kubernetes-oidc-issuer-configurator
+      serviceAccountName: self-signed-oidc-issuer-configurator
       containers:
         - image: curlimages/curl
-          name: configure-kubernetes-oidc-issuer-jwks-in-requestauthentication
+          name: configure-oidc-issuer-jwks-in-requestauthentication
           command:
             - /script.sh
           envFrom:
             - configMapRef:
-                name: configure-self-signed-kubernetes-oidc-issuer-envs
+                name: configure-self-signed-oidc-issuer-envs
           volumeMounts:
             - mountPath: /script.sh
               name: script
@@ -27,7 +31,7 @@ spec:
       volumes:
         - name: script
           configMap:
-            name: configure-self-signed-kubernetes-oidc-issuer-script
+            name: configure-self-signed-oidc-issuer-script
             defaultMode: 0777
             items:
               - key: script.sh
