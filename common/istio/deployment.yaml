@@ -4,6 +4,7 @@ deployments:
   - path: istio-cni
     when: common.istio.cni.enabled
   - path: istio-istiod
+  - barrier: true # sidecar injection must be working before we continue
   - path: istio-gateway
   - path: istio-cluster-local-gateway
     when: common.istio.clusterLocalGateway.enabled
