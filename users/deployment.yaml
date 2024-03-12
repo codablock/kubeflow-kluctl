@@ -1,0 +1,7 @@
+deployments:
+{% for user in users %}
+  - path: user-namespace
+    vars:
+      - values:
+          user: {{ user | to_json }}
+{% endfor %}

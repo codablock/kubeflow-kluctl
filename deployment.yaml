@@ -1,5 +1,6 @@
 vars:
   - file: config/defaults.yaml
+  - file: config/users.yaml
 
 deployments:
   - path: namespaces
@@ -9,3 +10,4 @@ deployments:
   - include: apps
   - include: contrib
   - barrier: true
+  - include: users
