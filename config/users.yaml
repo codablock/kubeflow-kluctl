@@ -1,3 +1,0 @@
-users:
-- name: user@example.com
-  profileName: kubeflow-user-example-com

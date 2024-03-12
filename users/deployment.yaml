@@ -1,6 +1,6 @@
 deployments:
-{% for user in users %}
-  - path: user-namespace
+{% for user in profiles %}
+  - path: user
     vars:
       - values:
           user: {{ user | to_json }}

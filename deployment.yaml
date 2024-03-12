@@ -1,6 +1,8 @@
 vars:
-  - file: config/defaults.yaml
-  - file: config/users.yaml
+  - file: config/commons-defaults.yaml
+  - file: config/users-defaults.yaml
+  - file: "{{ args.config }}"
+    when: args.config
 
 deployments:
   - path: namespaces
