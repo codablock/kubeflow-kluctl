@@ -6,7 +6,7 @@ metadata:
 spec:
   jwtRules:
     - forwardOriginalToken: true
-      issuer: {{ common.oidc_client.oauth2_proxy.m2m.tokenIssuer }}
+      issuer: {{ auth.oauth2_proxy.m2m.tokenIssuer }}
       outputClaimToHeaders:
         - claim: sub
           header: x-auth-request-user

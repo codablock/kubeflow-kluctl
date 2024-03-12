@@ -9,4 +9,4 @@ deployments:
   - path: istio-cluster-local-gateway
     when: common.istio.clusterLocalGateway.enabled
   - path: istio-external-auth
-    when: common.oidc_client.oauth2_proxy.enabled
+    when: auth.oauth2_proxy.enabled

@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1alpha1
 kind: Component
 
 resources:
-{% if common.oidc_client.oauth2_proxy.cloudFlare %}
+{% if auth.oauth2_proxy.cloudFlare %}
 - authorizationpolicy.istio-ingressgateway-oauth2-proxy-cloudflare.yaml
 {% else %}
 - authorizationpolicy.istio-ingressgateway-oauth2-proxy.yaml

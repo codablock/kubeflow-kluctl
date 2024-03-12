@@ -1,4 +1,4 @@
-{% if common.oidc_client.oauth2_proxy.enabled %}
+{% if auth.oauth2_proxy.enabled %}
 apiVersion: v1
 kind: Namespace
 metadata:

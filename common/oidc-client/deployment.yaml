@@ -1,5 +1,5 @@
 deployments:
   - path: oidc-authservice
-    when: common.oidc_client.auth_service.enabled
+    when: auth.auth_service.enabled
   - path: oauth2-proxy
-    when: common.oidc_client.oauth2_proxy.enabled
+    when: auth.oauth2_proxy.enabled

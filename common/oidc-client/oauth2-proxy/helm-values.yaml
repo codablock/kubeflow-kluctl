@@ -9,20 +9,20 @@ extraEnv:
   # This will configure oauth2-proxy option --cookie-secure which can force
   # auth redirect with redirect_uri parameter using https.
   - name: OAUTH2_PROXY_COOKIE_SECURE
-    value: "{{ (not common.oidc_client.oauth2_proxy.m2m.enabled or not common.oidc_client.oauth2_proxy.m2m.selfSigned) | lower }}"
+    value: "{{ (not auth.oauth2_proxy.m2m.enabled or not auth.oauth2_proxy.m2m.selfSigned) | lower }}"
 
   # If Kubernetes is managed by kind, vCluster, minikube or similar tool,
   # most probably the Kubernetes OIDC Issuer will be server in-cluster
   # behind self-signed certs. This option will configure
   # --ssl-insecure-skip-verify which will accept self-signed-certificates.
   - name: OAUTH2_PROXY_SSL_INSECURE_SKIP_VERIFY
-    value: "{{ (common.oidc_client.oauth2_proxy.m2m.enabled and common.oidc_client.oauth2_proxy.m2m.selfSigned) | lower }}"
+    value: "{{ (auth.oauth2_proxy.m2m.enabled and auth.oauth2_proxy.m2m.selfSigned) | lower }}"
 
   # This will configure oauth2-proxy option --skip-jwt-bearer-tokens which
   # will pass the requests with 'Authorization' header with Bearer Token
   # matching --extra-jwt-issuers.
   - name: OAUTH2_PROXY_SKIP_JWT_BEARER_TOKENS
-    value: "{{ (common.oidc_client.oauth2_proxy.m2m.enabled) | lower }}"
+    value: "{{ (auth.oauth2_proxy.m2m.enabled) | lower }}"
 
   # Bearer tokens issued by these OIDC Issuers will be verified against the
   # Issuer and accepted on success.

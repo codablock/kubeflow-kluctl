@@ -1,3 +1,7 @@
+{% if not auth.dex.staticPasswords %}
+  {{ raise("you must provide a list of static passwords via auth.dex.staticPassword") }}
+{% endif %}
+
 config:
   issuer: http://dex.auth.svc.cluster.local:5556/dex
   storage:
@@ -11,18 +15,18 @@ config:
     format: text
   oauth2:
     skipApprovalScreen: true
-  {% if common.dex.staticPasswords %}
+  {% if auth.dex.staticPasswords %}
   enablePasswordDB: true
-  staticPasswords: {{ common.dex.staticPasswords | to_json }}
+  staticPasswords: {{ auth.dex.staticPasswords | to_json }}
   {% endif %}
   staticClients:
     # https://github.com/dexidp/dex/pull/1664
     - idEnv: OIDC_CLIENT_ID
       redirectURIs:
-        {% if common.oidc_client.auth_service.enabled %}
+        {% if auth.auth_service.enabled %}
         - "/authservice/oidc/callback"
         {% endif %}
-        {% if common.oidc_client.oauth2_proxy.enabled %}
+        {% if auth.oauth2_proxy.enabled %}
         - "/oauth2/callback"
         {% endif %}
       name: 'Dex Login Application'

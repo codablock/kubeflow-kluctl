@@ -3,9 +3,9 @@ kind: Kustomization
 
 resources:
 - helm-rendered.yaml
-{% if common.oidc_client.oauth2_proxy.m2m.enabled %}
+{% if auth.oauth2_proxy.m2m.enabled %}
 - m2m
-{% if common.oidc_client.oauth2_proxy.m2m.selfSigned %}
+{% if auth.oauth2_proxy.m2m.selfSigned %}
 - m2m-self-signed
 - m2m-configure-self-signed-oidc-issuer
 {% endif %}
