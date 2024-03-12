@@ -1,0 +1,7 @@
+resources:
+  - ../upstream/overlays/kserve
+
+{% if common.oidc_client.oauth2_proxy.enabled %}
+patches:
+  - path: patches/deployment.logout-url.yaml
+{% endif %}
