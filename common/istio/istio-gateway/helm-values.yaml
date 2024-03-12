@@ -1,0 +1,3 @@
+serviceAccount:
+  # stay compatible with the name used by "istioctl profile dump"
+  name: istio-ingressgateway-service-account
